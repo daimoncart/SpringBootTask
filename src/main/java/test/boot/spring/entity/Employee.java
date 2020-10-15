@@ -5,12 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Getter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity @Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@SequenceGenerator(name="seq", initialValue=6, allocationSize=100)
 public class Employee {
     @Id
     @GeneratedValue
