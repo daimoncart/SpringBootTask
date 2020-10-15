@@ -26,6 +26,9 @@ public class EmployeeService {
     }
 
     public void save(Employee employee){
+        if (employeeRepository.findByEmail(employee.getEmail()) != null){
+            throw new RuntimeException("Employee with an email " + employee.getEmail() + " already exists.");
+        }
         employeeRepository.save(employee);
     }
 
