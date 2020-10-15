@@ -1,13 +1,10 @@
 package test.boot.spring.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Entity @Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Entity @Getter @Setter @AllArgsConstructor @NoArgsConstructor @ToString
 @SequenceGenerator(name="seq", initialValue=6, allocationSize=100)
 public class Employee {
     @Id

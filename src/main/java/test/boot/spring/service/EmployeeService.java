@@ -6,6 +6,7 @@ import test.boot.spring.entity.Employee;
 import test.boot.spring.repository.EmployeeRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -15,4 +16,13 @@ public class EmployeeService {
     public List<Employee> findAll() {
         return employeeRepository.findAll();
     }
+
+    public Employee findById(long id) {
+        Optional<Employee> employeeOptional = employeeRepository.findById(id);
+        if (!employeeOptional.isPresent()) {
+            throw new RuntimeException("User not found");
+        }
+        return employeeOptional.get();
+    }
+
 }
