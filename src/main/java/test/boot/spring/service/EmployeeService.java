@@ -25,4 +25,8 @@ public class EmployeeService {
         return employeeOptional.get();
     }
 
+    public void save(Employee employee){
+        employeeRepository.save(employee);
+    }
+
 }

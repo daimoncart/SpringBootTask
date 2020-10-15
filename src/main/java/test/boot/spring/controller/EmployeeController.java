@@ -1,9 +1,7 @@
 package test.boot.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import test.boot.spring.entity.Employee;
 import test.boot.spring.service.EmployeeService;
 
@@ -26,5 +24,11 @@ public class EmployeeController {
             throw new RuntimeException("User not found");
         }
         return returnedEmployee;
+    }
+
+    @PostMapping(path="/employees")
+    public List<Employee> createEmployee(@RequestBody Employee employee){
+        employeeService.save(employee);
+        return employeeService.findAll();
     }
 }
