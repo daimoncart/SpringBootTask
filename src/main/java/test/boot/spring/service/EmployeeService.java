@@ -2,7 +2,7 @@ package test.boot.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import test.boot.spring.entity.Employee;
+import test.boot.spring.model.Employee;
 import test.boot.spring.repository.EmployeeRepository;
 
 import java.util.List;

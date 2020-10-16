@@ -2,7 +2,7 @@ package test.boot.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import test.boot.spring.entity.Employee;
+import test.boot.spring.model.Employee;
 import test.boot.spring.service.EmployeeService;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package test.boot.spring.entity;
+package test.boot.spring.model;
 
 import lombok.*;
 
