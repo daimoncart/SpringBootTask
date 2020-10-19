@@ -20,7 +20,7 @@ public class ForecastController {
 
 
 
-    private String url = "http://api.openweathermap.org/data/2.5/forecast?q=Grozny&units=metric&appid=" +
+    private String url = "http://api.openweathermap.org/data/2.5/forecast?q=Grozny&units=metric&appid=6cd" +
             getKey();
 
     @GetMapping(path="/weather")
@@ -30,7 +30,7 @@ public class ForecastController {
 
 
     private static String getKey(){
-         String appId1 = "6cd083ea34ca3da3df07f2fb02689ba";
+         String appId1 = "083ea34ca3da3df07f2fb02689ba";
          int appId2 = (int) Math.pow(2,3);
          return appId1+ String.valueOf(appId2);
     }
