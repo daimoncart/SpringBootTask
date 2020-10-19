@@ -8,7 +8,6 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter @Setter @ToString
 public class Forecast {
-    private int cod;
     private Stint[] list;
 }
 

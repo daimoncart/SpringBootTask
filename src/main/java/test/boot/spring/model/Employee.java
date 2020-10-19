@@ -24,4 +24,8 @@ public class Employee {
     @Size(min=8, message="Email should be at least 8 chars long")
     private String email;
 
+    @Column(length=50)
+    @Size(min=2, message="Town/city name should be at least 2 chars long")
+    private String town;
+
 }
