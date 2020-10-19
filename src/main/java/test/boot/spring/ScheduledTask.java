@@ -15,7 +15,7 @@ public class ScheduledTask {
     @Autowired
     PrivateLogger privateLogger;
 
-    @Scheduled(cron = "${scheduler.expression}")
+    @Scheduled(cron = "${cron.expression}")
     public void scheduleTaskWithCronExpression() {
         privateLogger.log("CRON executed");
     }
