@@ -24,4 +24,7 @@ public class Employee {
     @Size(min=8, message="Email should be at least 8 chars long")
     private String email;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    private Town town;
+
 }
