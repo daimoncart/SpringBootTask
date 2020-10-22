@@ -14,10 +14,10 @@ import test.boot.spring.model.Forecast;
 public class ForecastController {
 
     @Autowired
-    private RestTemplate restTemplate;
+    RestTemplate restTemplate;
 
-    @Autowired
-    private Environment env;
+//    @Autowired
+//    private Environment env;
 
     @GetMapping(path="/weather")
     public Forecast getForecast(@RequestParam String town){

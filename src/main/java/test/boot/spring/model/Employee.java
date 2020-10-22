@@ -1,5 +1,6 @@
 package test.boot.spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class Employee {
     private String email;
 
     @ManyToOne(fetch=FetchType.LAZY)
+    @JsonIgnore
     private Town town;
 
 }
