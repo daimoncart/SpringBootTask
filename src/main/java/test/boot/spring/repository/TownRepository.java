@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface TownRepository extends JpaRepository<Town, Long> {
-    List<Town> findAll();
+    Town findByName(String name);
 }

@@ -30,4 +30,10 @@ public class Town {
 
     @OneToMany(mappedBy="town")
     private List<Employee> employees;
+
+    public Town(@Size(min = 2, message = "Town/city name should be at least 2 chars long") String name, int minVisibility, float maxWind) {
+        this.name = name;
+        this.minVisibility = minVisibility;
+        this.maxWind = maxWind;
+    }
 }
