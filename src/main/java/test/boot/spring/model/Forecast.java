@@ -17,15 +17,15 @@ public class Forecast {
     private Stint[] list;
 
     public int getMinVisibility(){
-        return Arrays.asList(list).stream()
-                .mapToInt(s -> s.getVisibility())
+        return Arrays.stream(list)
+                .mapToInt(Stint::getVisibility)
                 .min().orElseThrow(NoSuchElementException::new);
     }
 
     public float getMaxWind(){
-        Optional<Stint> windiestStint = Arrays.asList(list).stream()
+        Optional<Stint> windiestStint = Arrays.stream(list)
                 .max(Comparator.comparing(Stint::getWindSpeed));
-        return windiestStint.isPresent()?windiestStint.get().getWindSpeed():0;
+        return windiestStint.map(Stint::getWindSpeed).orElse(0F);
     }
 }
 

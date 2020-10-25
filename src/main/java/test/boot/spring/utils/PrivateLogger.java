@@ -14,7 +14,7 @@ public class PrivateLogger {
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     public void log(String message){
-        logger.info("" + (dateTimeFormatter.format(LocalDateTime.now())) + " : " + message);
+        logger.info(("***" + dateTimeFormatter.format(LocalDateTime.now())) + " : " + message);
     }
 
 }

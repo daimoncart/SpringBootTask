@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import test.boot.spring.exception.NoTownException;
 import test.boot.spring.model.Forecast;
 import test.boot.spring.model.Town;
 import test.boot.spring.repository.TownRepository;
+import test.boot.spring.utils.PrivateLogger;
 
 import java.util.List;
 
@@ -21,6 +23,9 @@ public class ForecastService {
 
     @Autowired
     private CacheManager cacheManager;
+
+    @Autowired
+    private PrivateLogger privateLogger;
 
     public void compareApiData(){
         boolean isCacheOk = true;
@@ -38,9 +43,9 @@ public class ForecastService {
         }
         if (!isCacheOk){
             cacheManager.getCache("towns").clear();
-            System.out.println("Cache cleared");
+            privateLogger.log("New data in forecast cache.");
         } else {
-            System.out.println("Cache OK");
+            privateLogger.log("Results fetched from forecast cache.");
         }
     }
 
@@ -48,12 +53,13 @@ public class ForecastService {
         String uriCall = "http://api.openweathermap.org/data/2.5/forecast?q=";
         String appId1 = "&units=metric&appid=6cd083ea34ca3da3df07f2fb02689ba";
         int appId2 = (int) Math.pow(2,3);
-        return uriCall + town + appId1 + String.valueOf(appId2);
+        return uriCall + town + appId1 + appId2;
     }
 
-    public boolean checkForTown(String town){
+    public boolean checkForTownName(String town) throws NoTownException {
         Forecast forecast = restTemplate.getForObject(getUrl(town), Forecast.class);
-        return forecast.getCod()==200;
+        return true;
     }
+
 
 }
