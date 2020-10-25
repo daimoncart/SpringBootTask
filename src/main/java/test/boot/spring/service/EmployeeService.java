@@ -3,7 +3,8 @@ package test.boot.spring.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import test.boot.spring.exception.EmployeeAlreadyExistsException;
-import test.boot.spring.exception.EmplyeeNotFoundException;
+import test.boot.spring.exception.EmployeeNotFoundException;
+import test.boot.spring.exception.IncorrectEmployeeParameterException;
 import test.boot.spring.model.Employee;
 import test.boot.spring.repository.EmployeeRepository;
 import test.boot.spring.utils.PrivateLogger;
@@ -31,7 +32,7 @@ public class EmployeeService {
         Optional<Employee> employeeOptional = employeeRepository.findById(id);
         if (!employeeOptional.isPresent()) {
             privateLogger.log("Non-existent employee with id " + id + " requested.");
-            throw new EmplyeeNotFoundException("Employee not found");
+            throw new EmployeeNotFoundException("Employee not found");
         }
         privateLogger.log("Single employee with id " + id + " returned.");
         return employeeOptional.get();
@@ -42,6 +43,11 @@ public class EmployeeService {
             privateLogger.log("A request to save a user with duplicate email address " +
                     employee.getEmail() + " has been made.");
             throw new EmployeeAlreadyExistsException("Employee with an email " + employee.getEmail() + " already exists.");
+        }
+        if (employee.getEmail().length()<8 ||
+            employee.getFirstName().length()<2 ||
+            employee.getLastName().length()<2){
+            throw new IncorrectEmployeeParameterException("Either name, last name or email is too short");
         }
         employeeRepository.save(employee);
         privateLogger.log("A new employee saved");

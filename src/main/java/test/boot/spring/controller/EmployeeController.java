@@ -2,6 +2,7 @@ package test.boot.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import test.boot.spring.exception.EmployeeNotFoundException;
 import test.boot.spring.model.Employee;
 import test.boot.spring.service.EmployeeService;
 
@@ -21,7 +22,7 @@ public class EmployeeController {
     public Employee getEmployee(@PathVariable long id){
         Employee returnedEmployee = employeeService.findById(id);
         if (returnedEmployee==null) {
-            throw new RuntimeException("User not found");
+            throw new EmployeeNotFoundException("Employee not found");
         }
         return returnedEmployee;
     }
