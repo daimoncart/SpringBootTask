@@ -2,6 +2,7 @@ package test.boot.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import test.boot.spring.exception.EmplyeeNotFoundException;
 import test.boot.spring.model.Employee;
 import test.boot.spring.repository.EmployeeRepository;
 import test.boot.spring.utils.PrivateLogger;
@@ -28,7 +29,8 @@ public class EmployeeService {
     public Employee findById(long id) {
         Optional<Employee> employeeOptional = employeeRepository.findById(id);
         if (!employeeOptional.isPresent()) {
-            throw new RuntimeException("User not found");
+            privateLogger.log("Non-existent employee with id " + id + " requested.");
+            throw new EmplyeeNotFoundException("Employee not found");
         }
         privateLogger.log("Single employee with id " + id + " returned.");
         return employeeOptional.get();

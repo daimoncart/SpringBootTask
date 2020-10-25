@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import test.boot.spring.exception.NoTownException;
+import test.boot.spring.exception.TownNotFoundException;
 import test.boot.spring.model.Forecast;
 import test.boot.spring.service.ForecastService;
 import test.boot.spring.utils.PrivateLogger;
@@ -24,9 +24,15 @@ public class ForecastController {
     PrivateLogger privateLogger;
 
     @GetMapping(path = "/weather")
-    public Forecast getForecast(@RequestParam String town) throws NoTownException {
+    public Forecast getForecast(@RequestParam String town) {
+        try{
+            Forecast forecast = restTemplate.getForObject(forecastService.getUrl(town), Forecast.class);
             privateLogger.log("Forecast for " + town + " has been requested.");
-            return restTemplate.getForObject(forecastService.getUrl(town), Forecast.class);
+            return forecast;
+        }
+        catch (TownNotFoundException e) {
+            throw new TownNotFoundException("sd");
+        }
     }
 
 

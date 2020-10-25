@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import test.boot.spring.exception.NoTownException;
 import test.boot.spring.model.Forecast;
 import test.boot.spring.model.Town;
 import test.boot.spring.repository.TownRepository;
