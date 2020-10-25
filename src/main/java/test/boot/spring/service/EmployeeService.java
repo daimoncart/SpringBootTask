@@ -2,6 +2,7 @@ package test.boot.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import test.boot.spring.exception.EmployeeAlreadyExistsException;
 import test.boot.spring.exception.EmplyeeNotFoundException;
 import test.boot.spring.model.Employee;
 import test.boot.spring.repository.EmployeeRepository;
@@ -38,7 +39,9 @@ public class EmployeeService {
 
     public void save(Employee employee){
         if (employeeRepository.findByEmail(employee.getEmail()) != null){
-            throw new RuntimeException("Employee with an email " + employee.getEmail() + " already exists.");
+            privateLogger.log("A request to save a user with duplicate email address " +
+                    employee.getEmail() + " has been made.");
+            throw new EmployeeAlreadyExistsException("Employee with an email " + employee.getEmail() + " already exists.");
         }
         employeeRepository.save(employee);
         privateLogger.log("A new employee saved");
