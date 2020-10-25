@@ -1,6 +1,8 @@
 package test.boot.spring.controller;
 
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +13,7 @@ import test.boot.spring.model.Forecast;
 import test.boot.spring.service.ForecastService;
 import test.boot.spring.utils.PrivateLogger;
 
+@Api(value="ForecastController")
 @RestController
 public class ForecastController {
 
@@ -23,6 +26,7 @@ public class ForecastController {
     @Autowired
     PrivateLogger privateLogger;
 
+    @ApiOperation(value = "Get full forecast for a specific city/town")
     @GetMapping(path = "/weather")
     public Forecast getForecast(@RequestParam String town) {
         try{

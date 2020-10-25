@@ -2,6 +2,7 @@ package test.boot.spring.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.util.List;
 @Entity
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor @ToString
 @SequenceGenerator(name = "seq2", initialValue = 6, allocationSize = 100)
-@ApiModel(description = "Entity for towns and their essential forecast data - max wind and min visibility")
+@ApiModel(description = "Entity for towns and their essential forecast data")
 public class Town {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq2")
@@ -19,7 +20,7 @@ public class Town {
 
     @Column(nullable = false, length = 50)
     @Size(min=2, message="Town/city name should be at least 2 chars long")
-    @ApiModelProperty(notes = "Should be at least 2 chars")
+    @ApiModelProperty(notes = "Should be at least 2 chars", required = true)
     private String name;
 
     @Column

@@ -18,17 +18,17 @@ public class Employee {
 
     @Column(nullable=false, length=50)
     @Size(min=2, message="First name should be at least 2 chars long")
-    @ApiModelProperty(notes="Should be at least 2 chars")
+    @ApiModelProperty(notes="Should be at least 2 chars", required = true)
     private String firstName;
 
     @Column(nullable=false, length=50)
     @Size(min=2, message="Last name should be at least 2 chars long")
-    @ApiModelProperty(notes="Should be at least 2 chars")
+    @ApiModelProperty(notes="Should be at least 2 chars", required = true)
     private String lastName;
 
     @Column(nullable=false, length=100)
     @Size(min=8, message="Email should be at least 8 chars long")
-    @ApiModelProperty(notes="Should be at least 8 chars")
+    @ApiModelProperty(notes="Should be at least 8 chars", required = true)
     private String email;
 
     @ManyToOne(fetch=FetchType.LAZY)
