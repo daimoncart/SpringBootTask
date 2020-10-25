@@ -1,6 +1,7 @@
 package test.boot.spring.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter @Setter @ToString
+@ApiModel(description = "Object for mapping forecasts from https://openweathermap.org/")
 public class Forecast {
     private int cod;
     private Stint[] list;
@@ -31,6 +33,7 @@ public class Forecast {
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter @Setter @ToString
+@ApiModel(description = "Inner class for mapping forecast data of all 40 3-hour stints")
 class Stint {
     private String dt;
     private int visibility;
@@ -43,6 +46,7 @@ class Stint {
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter @Setter @ToString
+@ApiModel(description = "Inner class for mapping forecast data of the wind speed")
 class Wind {
     private float speed;
 }
