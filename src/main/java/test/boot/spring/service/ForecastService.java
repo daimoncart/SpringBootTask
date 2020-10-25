@@ -56,10 +56,6 @@ public class ForecastService {
         return uriCall + town + appId1 + appId2;
     }
 
-    public boolean checkForTownName(String town) throws NoTownException {
-        Forecast forecast = restTemplate.getForObject(getUrl(town), Forecast.class);
-        return true;
-    }
 
 
 }

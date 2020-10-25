@@ -23,13 +23,11 @@ public class ForecastController {
     @Autowired
     PrivateLogger privateLogger;
 
-    @GetMapping(path="/weather")
+    @GetMapping(path = "/weather")
     public Forecast getForecast(@RequestParam String town) throws NoTownException {
-        forecastService.checkForTownName(town);
-        privateLogger.log("Forecast for " + town + " has been requested.");
-        return restTemplate.getForObject(forecastService.getUrl(town), Forecast.class);
+            privateLogger.log("Forecast for " + town + " has been requested.");
+            return restTemplate.getForObject(forecastService.getUrl(town), Forecast.class);
     }
-
 
 
 }
