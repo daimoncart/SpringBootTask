@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import test.boot.spring.model.Forecast;
+import test.boot.spring.service.ForecastService;
 
 @RestController
 public class ForecastController {
@@ -16,24 +17,17 @@ public class ForecastController {
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    ForecastService forecastService;
+
 //    @Autowired
 //    private Environment env;
 
     @GetMapping(path="/weather")
     public Forecast getForecast(@RequestParam String town){
-        return restTemplate.getForObject(getUrl(town), Forecast.class);
+        return restTemplate.getForObject(forecastService.getUrl(town), Forecast.class);
     }
 
 
-    private static String getUrl(String town){
-         String uriCall = "http://api.openweathermap.org/data/2.5/forecast?q=";
-         String appId1 = "&units=metric&appid=6cd083ea34ca3da3df07f2fb02689ba";
-         int appId2 = (int) Math.pow(2,3);
-         return uriCall + town + appId1 + String.valueOf(appId2);
-    }
 
-    public boolean checkForTown(String town){
-        Forecast forecast = restTemplate.getForObject(getUrl(town), Forecast.class);
-        return forecast.getCod()==200;
-    }
 }

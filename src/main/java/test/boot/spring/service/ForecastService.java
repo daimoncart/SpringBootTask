@@ -3,16 +3,12 @@ package test.boot.spring.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import test.boot.spring.model.Forecast;
 import test.boot.spring.model.Town;
 import test.boot.spring.repository.TownRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ForecastService {
@@ -46,33 +42,6 @@ public class ForecastService {
         } else {
             System.out.println("Cache OK");
         }
-
-//        List<String> towns = townRepository.findAll()
-//                .stream()
-//                .map(t -> t.getName())
-//                .collect(Collectors.toList());
-//
-////        List<Town> apiTowns = new ArrayList<>();
-//        boolean isCacheOk = true;
-//        for (String townName: towns){
-//            Forecast forecast = restTemplate.getForObject(getUrl(townName), Forecast.class);
-//            int minVisibility = forecast.getMinVisibility();
-//            float maxWindSpeed = forecast.getMaxWind();
-//            Town apiTown = new Town(townName, minVisibility, maxWindSpeed);
-////            Town dbTown = townRepository.findByName(townName);
-//            System.out.println(apiTown);
-//            if (apiTown.getMaxWind() != dbTown.getMaxWind() ||
-//                    apiTown.getMinVisibility() != dbTown.getMinVisibility()) {
-//                dbTown.setMaxWind(apiTown.getMaxWind());
-//                dbTown.setMinVisibility(apiTown.getMinVisibility());
-//                townRepository.save(dbTown);
-//                isCacheOk = false;
-//            }
-//            apiTowns.add(apiTown);
-
-
-
-
     }
 
     public String getUrl(String town){
