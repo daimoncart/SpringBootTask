@@ -49,6 +49,11 @@ public class EmployeeService {
             employee.getLastName().length()<2){
             throw new IncorrectEmployeeParameterException("Either name, last name or email is too short");
         }
+        if (employee.getEmail().length()>100 ||
+                employee.getFirstName().length()>50 ||
+                employee.getLastName().length()>50){
+            throw new IncorrectEmployeeParameterException("Either name, last name or email is too long");
+        }
         employeeRepository.save(employee);
         privateLogger.log("A new employee saved");
         return employee;
