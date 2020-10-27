@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.WebApplicationContext;
 import test.boot.spring.exception.EmployeeAlreadyExistsException;
 import test.boot.spring.exception.EmployeeNotFoundException;
@@ -47,12 +48,22 @@ public class ForecastControllerTest {
     @Test
     public void getForecastTest_withExistingTown() throws Exception {
         MvcResult result = mockMvc.perform(
-                get("/weather?town=lima")
+                get("/weather")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
         String resultContent = result.getResponse().getContentAsString();
         Forecast forecast = mapper.readValue(resultContent, Forecast.class);
         Assert.assertTrue(forecast.getCod()==200);
+    }
+
+    @Test
+    public void getForecastTest_withNonExistingTown() throws Exception {
+        MvcResult result = mockMvc.perform(
+                get("/weather?town=BongCloudCity")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+        Assert.assertTrue(result.getResponse().getContentLength() == 0);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import test.boot.spring.exception.TownNotFoundException;
 import test.boot.spring.model.Forecast;
@@ -34,8 +35,9 @@ public class ForecastController {
             privateLogger.log("Forecast for " + town + " has been requested.");
             return forecast;
         }
-        catch (TownNotFoundException e) {
-            throw new TownNotFoundException("sd");
+        catch (HttpClientErrorException e) {
+            privateLogger.log(String.format("Wrong city/town (%s) called", town));
+            return null;
         }
     }
 
