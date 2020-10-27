@@ -34,8 +34,8 @@ public class EmployeeController {
 
     @ApiOperation(value = "Create a new employee in the system")
     @PostMapping(path="/employees")
-    public List<Employee> createEmployee(@RequestBody Employee employee){
-        employeeService.save(employee);
-        return employeeService.findAll();
+    public Employee createEmployee(@RequestBody Employee employee){
+        Employee returnEmployee = employeeService.save(employee);
+        return employeeService.findById(returnEmployee.getId());
     }
 }

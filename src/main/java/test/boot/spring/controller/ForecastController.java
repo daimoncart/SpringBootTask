@@ -28,7 +28,7 @@ public class ForecastController {
 
     @ApiOperation(value = "Get full forecast for a specific city/town")
     @GetMapping(path = "/weather")
-    public Forecast getForecast(@RequestParam (defaultValue = "Punta Arenas") String town) {
+    public Forecast getForecast(@RequestParam (defaultValue = "${default.town}") String town) {
         try{
             Forecast forecast = restTemplate.getForObject(forecastService.getUrl(town), Forecast.class);
             privateLogger.log("Forecast for " + town + " has been requested.");

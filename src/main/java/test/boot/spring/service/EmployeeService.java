@@ -38,7 +38,7 @@ public class EmployeeService {
         return employeeOptional.get();
     }
 
-    public void save(Employee employee){
+    public Employee save(Employee employee){
         if (employeeRepository.findByEmail(employee.getEmail()) != null){
             privateLogger.log("A request to save a user with duplicate email address " +
                     employee.getEmail() + " has been made.");
@@ -51,6 +51,7 @@ public class EmployeeService {
         }
         employeeRepository.save(employee);
         privateLogger.log("A new employee saved");
+        return employee;
     }
 
 }
