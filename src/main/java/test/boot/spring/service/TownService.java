@@ -14,7 +14,6 @@ public class TownService {
     @Autowired
     TownRepository townRepository;
 
-
     @Cacheable("towns")
     public Town findByName(String name){
         simulateSlowService();

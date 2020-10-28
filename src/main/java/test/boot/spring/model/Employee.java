@@ -9,7 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @ApiModel(description="Employee details - first name, last name, email address")
-@Entity @Getter @Setter @AllArgsConstructor @NoArgsConstructor @ToString
+@Entity @Getter @Setter @AllArgsConstructor @NoArgsConstructor @ToString @Builder
 @SequenceGenerator(name="seq", initialValue=6, allocationSize=100)
 public class Employee {
     @Id
