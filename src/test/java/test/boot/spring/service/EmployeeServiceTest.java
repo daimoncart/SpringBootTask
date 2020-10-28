@@ -27,8 +27,8 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class EmployeeServiceTest {
 
-    @Rule
-    public final ExpectedException exception = ExpectedException.none();
+//    @Rule
+//    public final ExpectedException exception = ExpectedException.none();
 
     @InjectMocks
     private EmployeeService employeeService;
