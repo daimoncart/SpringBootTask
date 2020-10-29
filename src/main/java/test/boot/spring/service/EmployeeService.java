@@ -55,9 +55,9 @@ public class EmployeeService {
                 employee.getLastName().length()>50){
             throw new IncorrectEmployeeParameterException("Either name, last name or email is too long");
         }
-        if (!employee.getEmail().matches("\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b")){
-            throw new InvalidEmailException("Email address looks suspicious, please check.");
-        }
+//        if (!employee.getEmail().matches("\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b")){
+//            throw new InvalidEmailException("Email address looks suspicious, please check.");
+//        }
         employeeRepository.save(employee);
         privateLogger.log("A new employee saved");
         return employee;

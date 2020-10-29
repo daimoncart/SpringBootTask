@@ -68,16 +68,16 @@ public class EmployeeServiceTest {
         assertEquals(1, returnedEmployee.getId());
     }
 
-    @Test
-    public void save_withIncorrectEmail_test() {
-        Employee employee = new Employee(6, "First6", "Second6", "email address", null);
-        try {
-            employeeService.save(employee);
-        } catch (Exception e) {
-            assertEquals(e.getClass(), InvalidEmailException.class);
-        }
-
-    }
+//    @Test
+//    public void save_withIncorrectEmail_test() {
+//        Employee employee = new Employee(6, "First6", "Second6", "email address", null);
+//        try {
+//            employeeService.save(employee);
+//        } catch (Exception e) {
+//            assertEquals(e.getClass(), InvalidEmailException.class);
+//        }
+//
+//    }
 
     @Test
     public void save_withIncorrectFirstName_test() {

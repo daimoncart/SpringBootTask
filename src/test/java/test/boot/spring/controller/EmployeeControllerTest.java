@@ -42,10 +42,11 @@ public class EmployeeControllerTest {
 
     @Test
     public void createEmployeeTest() throws Exception {
-        Employee testEmployee = new Employee();
-        testEmployee.setEmail("test@email.com");
-        testEmployee.setFirstName("JohnTest");
-        testEmployee.setLastName("SmithTest");
+        Employee testEmployee = Employee.builder()
+            .email("test745@email.com")
+            .firstName("JohnTest")
+            .lastName("SmithTest")
+            .build();
         String jsonRequest = mapper.writeValueAsString(testEmployee);
         MvcResult result = mockMvc.perform(
                 post("/employees")
@@ -56,7 +57,7 @@ public class EmployeeControllerTest {
         String resultContent = result.getResponse().getContentAsString();
         Employee returnedEmployee = mapper.readValue(resultContent, Employee.class);
         Assert.assertTrue(returnedEmployee.getId()>0);
-        Assert.assertTrue(returnedEmployee.getEmail().equals("test@email.com"));
+        Assert.assertTrue(returnedEmployee.getEmail().equals("test745@email.com"));
     }
 
     @Test
@@ -97,9 +98,9 @@ public class EmployeeControllerTest {
     public void createEmployee_AlreadyExistsExceptionTest() throws Exception {
 
         Employee testEmployee = new Employee();
-        testEmployee.setEmail("test2@email.com");
-        testEmployee.setFirstName("JohnTest2");
-        testEmployee.setLastName("SmithTest2");
+        testEmployee.setEmail("test12@email.com");
+        testEmployee.setFirstName("JohnTest12");
+        testEmployee.setLastName("SmithTest12");
         String jsonRequest = mapper.writeValueAsString(testEmployee);
         MvcResult result = mockMvc.perform(
                 post("/employees")
